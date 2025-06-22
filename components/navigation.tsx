@@ -1,12 +1,30 @@
 "use client"
 
 import Link from "next/link"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Menu, X, Phone } from "lucide-react"
+import { Menu, X, Phone, User } from "lucide-react"
+import { getSupabaseClient } from "@/lib/supabase"
+import type { User as SupabaseUser } from "@supabase/supabase-js"
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
+  const [user, setUser] = useState<SupabaseUser | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const supabase = getSupabaseClient()
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null)
+      setLoading(false)
+    })
+
+    return () => {
+      subscription?.unsubscribe()
+    }
+  }, [])
 
   return (
     <>
@@ -60,17 +78,41 @@ export default function Navigation() {
               >
                 Contact
               </Link>
-              <Link
-                href="/auth/login"
-                className="text-slate-700 hover:text-blue-600 font-medium transition-colors duration-200"
-              >
-                Sign In
-              </Link>
-              <Link href="/auth/signup">
-                <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full transition-all duration-300 transform hover:scale-105">
-                  Get Started
-                </Button>
-              </Link>
+              {loading ? (
+                <>
+                  <div className="h-6 w-24 rounded-md bg-slate-200 animate-pulse" />
+                  <div className="h-10 w-32 rounded-full bg-slate-200 animate-pulse" />
+                </>
+              ) : user ? (
+                <>
+                  <Link
+                    href="/account"
+                    className="text-slate-700 hover:text-blue-600 font-medium transition-colors duration-200 flex items-center"
+                  >
+                    <User className="w-4 h-4 mr-1" />
+                    Account
+                  </Link>
+                  <Link href="/dashboard">
+                    <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full transition-all duration-300 transform hover:scale-105">
+                      Dashboard
+                    </Button>
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link
+                    href="/auth/login"
+                    className="text-slate-700 hover:text-blue-600 font-medium transition-colors duration-200"
+                  >
+                    Sign In
+                  </Link>
+                  <Link href="/auth/signup">
+                    <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full transition-all duration-300 transform hover:scale-105">
+                      Get Started
+                    </Button>
+                  </Link>
+                </>
+              )}
             </div>
 
             {/* Mobile Menu Button */}
@@ -104,18 +146,43 @@ export default function Navigation() {
                 >
                   Contact
                 </Link>
-                <Link
-                  href="/auth/login"
-                  className="text-slate-700 hover:text-blue-600 font-medium transition-colors duration-200"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Sign In
-                </Link>
-                <Link href="/auth/signup" onClick={() => setIsOpen(false)}>
-                  <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full transition-all duration-300 w-full">
-                    Get Started
-                  </Button>
-                </Link>
+                {loading ? (
+                  <div className="space-y-4">
+                    <div className="h-6 w-24 rounded-md bg-slate-200 animate-pulse" />
+                    <div className="h-10 w-full rounded-full bg-slate-200 animate-pulse" />
+                  </div>
+                ) : user ? (
+                  <>
+                    <Link
+                      href="/account"
+                      className="text-slate-700 hover:text-blue-600 font-medium transition-colors duration-200 flex items-center"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <User className="w-4 h-4 mr-1" />
+                      Account
+                    </Link>
+                    <Link href="/dashboard" onClick={() => setIsOpen(false)}>
+                      <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full transition-all duration-300 w-full">
+                        Dashboard
+                      </Button>
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <Link
+                      href="/auth/login"
+                      className="text-slate-700 hover:text-blue-600 font-medium transition-colors duration-200"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Sign In
+                    </Link>
+                    <Link href="/auth/signup" onClick={() => setIsOpen(false)}>
+                      <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full transition-all duration-300 w-full">
+                        Get Started
+                      </Button>
+                    </Link>
+                  </>
+                )}
               </div>
             </div>
           )}
