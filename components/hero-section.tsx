@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Droplets } from "lucide-react"
+import Link from "next/link"
 
 export default function HeroSection() {
   return (
@@ -27,21 +28,16 @@ export default function HeroSection() {
             exceptional surface finishes for the most demanding applications.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center fade-in">
-            <Button
-              size="lg"
-              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold rounded-full transition-all duration-300 transform hover:scale-105 shadow-xl"
-            >
-              Explore Products
-              <ArrowRight className="w-5 h-5 ml-2" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-white/30 text-slate-800 hover:bg-white/10 backdrop-blur-sm px-8 py-4 text-lg font-semibold rounded-full transition-all duration-300 transform hover:scale-105"
-            >
-              Technical Data
-            </Button>
+          <div className="flex justify-center fade-in">
+            <Link href="/products">
+              <Button
+                size="lg"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold rounded-full transition-all duration-300 transform hover:scale-105 shadow-xl"
+              >
+                Explore Products
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </Button>
+            </Link>
           </div>
 
           {/* Stats */}
