@@ -47,8 +47,8 @@ const productData: Record<string, any> = {
   },
 }
 
-export default function ProductPage({ params }: { params: { slug: string } }) {
-  const product = productData[params.slug]
+export default async function ProductPage({ params }: { params: { slug: string } }) {
+  const product = productData[params.slug];
 
   if (!product) {
     return (
@@ -62,7 +62,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
         </div>
         <Footer />
       </div>
-    )
+    );
   }
 
   return (
@@ -163,5 +163,5 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
 
       <Footer />
     </div>
-  )
+  );
 }
