@@ -151,8 +151,8 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-900 mb-1">Email</h3>
-                        <p className="text-gray-600">info@industrialsolutions.com</p>
-                        <p className="text-gray-600">sales@industrialsolutions.com</p>
+                        <p className="text-gray-600">info@will-cool.com</p>
+                        <p className="text-gray-600">sales@will-cool.com</p>
                       </div>
                     </div>
 
@@ -162,8 +162,8 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-900 mb-1">Address</h3>
-                        <p className="text-gray-600">123 Industrial Boulevard</p>
-                        <p className="text-gray-600">Manufacturing City, ST 12345</p>
+                        <p className="text-gray-600">123 Industrial Way</p>
+                        <p className="text-gray-600">Coolant City, MI 48201</p>
                         <p className="text-gray-600">United States</p>
                       </div>
                     </div>
