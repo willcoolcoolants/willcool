@@ -1,4 +1,3 @@
-import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Award, Users, Zap } from "lucide-react"
 
@@ -20,24 +19,6 @@ export default function AboutSection() {
             performance-driven solutions in the industry. Our coolants provide superior lubrication, excellent heat
             dissipation, and extended tool life in the most demanding machining environments.
           </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 w-full max-w-4xl">
-            <div className="text-center p-4">
-              <Award className="w-8 h-8 text-blue-600 mx-auto mb-2" />
-              <div className="font-semibold text-slate-800">ISO Certified</div>
-              <div className="text-sm text-slate-600">Quality Standards</div>
-            </div>
-            <div className="text-center p-4">
-              <Users className="w-8 h-8 text-blue-600 mx-auto mb-2" />
-              <div className="font-semibold text-slate-800">Expert Team</div>
-              <div className="text-sm text-slate-600">Chemical Engineers</div>
-            </div>
-            <div className="text-center p-4">
-              <Zap className="w-8 h-8 text-blue-600 mx-auto mb-2" />
-              <div className="font-semibold text-slate-800">Innovation</div>
-              <div className="text-sm text-slate-600">R&D Focused</div>
-            </div>
-          </div>
 
           <Button
             size="lg"

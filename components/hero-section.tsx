@@ -4,17 +4,20 @@ import Link from "next/link"
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-[700px] bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 overflow-hidden">
+    <section className="relative -mt-24 md:-mt-28 lg:-mt-32 min-h-[700px] bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 overflow-hidden">
       {/* Animated Fluid Background */}
       <div className="fluid-background"></div>
       <div className="hero-overlay"></div>
 
-      <div className="hero-content container mx-auto px-4 py-24">
+      <div className="hero-content container mx-auto px-4 pt-40 pb-24 md:pt-52 md:pb-28">
         <div className="max-w-4xl mx-auto text-center text-white">
-          <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-8 slide-in-left">
+          <Link
+            href="tel:180094552665"
+            className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-5 py-2.5 mb-8 slide-in-left transition-transform duration-300 hover:scale-[1.02]"
+          >
             <Droplets className="w-4 h-4 mr-2 text-blue-300" />
-            <span className="text-sm font-medium">Premium Synthetic Coolants</span>
-          </div>
+            <span className="text-sm font-semibold tracking-wide uppercase">Call 1-800-WILLCOOL</span>
+          </Link>
 
           <h1 className="text-5xl md:text-7xl font-bold mb-6 slide-in-left">
             Advanced Coolant
