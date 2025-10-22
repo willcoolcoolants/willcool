@@ -1,0 +1,67 @@
+WillCool Frontend + Supabase Auth Integration - Temporary Disablement
+
+Overview
+- Auth UI (Sign In / Get Started, Account / Dashboard) is temporarily hidden from the navigation. All auth-related pages and Supabase configuration remain intact for future use.
+
+Changed Files
+- components/navigation.tsx
+  - Commented out Supabase auth imports, state, and effect hooks
+  - Commented out conditional rendering for auth buttons in both desktop and mobile menus
+  - Navigation now renders only static links: Home, Products, Contact
+
+Unaffected Files (kept for later use)
+- app/auth/login/page.tsx
+- app/auth/signup/page.tsx
+- app/auth/verify/page.tsx (+ loading.tsx)
+- app/auth/callback/route.ts
+- app/account/page.tsx
+- app/dashboard/page.tsx
+- lib/supabase.ts
+- lib/supabase-server.ts
+- lib/supabase-auth-helpers.ts
+
+Environment Variables (keep in .env.local)
+- NEXT_PUBLIC_SUPABASE_URL
+- NEXT_PUBLIC_SUPABASE_ANON_KEY
+- SUPABASE_SERVICE_ROLE_KEY (server-only usage)
+
+How to Re-enable Auth in Navigation
+1) Restore imports in components/navigation.tsx
+   - Un-comment:
+     import { getSupabaseClient } from "@/lib/supabase"
+     import type { User as SupabaseUser } from "@supabase/supabase-js"
+
+2) Restore state
+   - Un-comment:
+     const [user, setUser] = useState<SupabaseUser | null>(null)
+     const [loading, setLoading] = useState(true)
+
+3) Restore effect to hydrate auth state
+   - Un-comment the useEffect block that:
+     - calls supabase.auth.getUser() on mount to set initial user
+     - subscribes to supabase.auth.onAuthStateChange to keep user in sync
+     - unsubscribes on cleanup
+
+4) Restore JSX for auth buttons
+   - In both desktop and mobile menus, un-comment the conditional block rendering:
+     - loading skeleton
+     - if authenticated: Account ("/account") and Dashboard ("/dashboard")
+     - if not authenticated: Sign In ("/auth/login") and Get Started ("/auth/signup")
+
+5) Verify environment
+   - Ensure .env.local contains valid Supabase credentials listed above
+   - Restart dev server after any env changes
+
+Optional Reconnection Points
+- If you later want to hide Account/Dashboard while still showing Sign In/Sign Up, render only the unauthenticated branch of the conditional.
+- If you want the app to redirect away from protected pages (e.g., /dashboard, /account), those pages already perform user checks via Supabase and will route to /auth/login when unauthenticated.
+
+Testing Checklist
+- Start dev server: npm run dev
+- Confirm nav shows Home, Products, Contact only (no auth buttons)
+- Navigate directly to /auth/login, /auth/signup, /auth/verify — pages should still load (not linked in nav)
+- When re-enabled, sign in should update the header to show Account/Dashboard; sign out should revert to Sign In/Get Started.
+
+Notes
+- No auth routes, pages, or helpers were deleted; only nav integration was disabled via comments.
+- Supabase backend usage on pages like /dashboard and /account remains unchanged. 

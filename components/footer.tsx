@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { Phone, Mail, MapPin } from "lucide-react"
 
 export default function Footer() {
@@ -9,18 +10,14 @@ export default function Footer() {
           {/* Company Info */}
           <div>
             <div className="flex items-center space-x-3 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-slate-700 rounded-xl flex items-center justify-center">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="w-6 h-6 text-white"
-                >
-                  <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" />
-                </svg>
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center shadow-lg bg-white">
+                <Image
+                  src="/logo.png"
+                  alt="WillCool Logo"
+                  width={48}
+                  height={48}
+                  className="object-contain rounded-lg"
+                />
               </div>
               <div>
                 <div className="font-bold text-lg">WillCool</div>
@@ -72,14 +69,6 @@ export default function Footer() {
                   className="text-slate-400 hover:text-white transition-colors duration-200"
                 >
                   Semi-Synthetic
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/products/cutting-fluids"
-                  className="text-slate-400 hover:text-white transition-colors duration-200"
-                >
-                  Cutting Fluids
                 </Link>
               </li>
             </ul>
