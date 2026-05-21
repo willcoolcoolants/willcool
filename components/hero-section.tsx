@@ -16,7 +16,7 @@ export default function HeroSection() {
             className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-5 py-2.5 mb-8 slide-in-left transition-transform duration-300 hover:scale-[1.02]"
           >
             <Droplets className="w-4 h-4 mr-2 text-blue-300" />
-            <span className="text-sm font-semibold tracking-wide uppercase">Call 1-800-WILLCOOL</span>
+            <span className="text-sm font-semibold tracking-wide uppercase">Call 1-513-739-8939</span>
           </Link>
 
           <h1 className="text-5xl md:text-7xl font-bold mb-6 slide-in-left">
