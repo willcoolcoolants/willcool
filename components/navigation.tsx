@@ -49,19 +49,19 @@ export default function Navigation() {
             <div className="hidden md:flex items-center space-x-8">
               <Link
                 href="/"
-                className="text-slate-700 hover:text-slate-900 hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.55)] font-medium transition-all duration-200"
+                className="text-slate-700 hover:text-slate-950 hover:underline decoration-slate-950 font-medium transition-all duration-200"
               >
                 Home
               </Link>
               <Link
                 href="/products"
-                className="text-slate-700 hover:text-slate-900 hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.55)] font-medium transition-all duration-200"
+                className="text-slate-700 hover:text-slate-950 hover:underline decoration-slate-950 font-medium transition-all duration-200"
               >
                 Products
               </Link>
               <Link
                 href="/contact"
-                className="text-slate-700 hover:text-slate-900 hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.55)] font-medium transition-all duration-200"
+                className="text-slate-700 hover:text-slate-950 hover:underline decoration-slate-950 font-medium transition-all duration-200"
               >
                 Contact
               </Link>
@@ -80,21 +80,21 @@ export default function Navigation() {
                 <div className="flex flex-col space-y-4">
                   <Link
                     href="/"
-                  className="text-slate-700 hover:text-slate-900 hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.55)] font-medium transition-all duration-200"
+                  className="text-slate-700 hover:text-slate-950 hover:underline decoration-slate-950 font-medium transition-all duration-200"
                   onClick={() => setIsOpen(false)}
                 >
                   Home
                 </Link>
                 <Link
                   href="/products"
-                  className="text-slate-700 hover:text-slate-900 hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.55)] font-medium transition-all duration-200"
+                  className="text-slate-700 hover:text-slate-950 hover:underline decoration-slate-950 font-medium transition-all duration-200"
                   onClick={() => setIsOpen(false)}
                 >
                   Products
                 </Link>
                 <Link
                   href="/contact"
-                  className="text-slate-700 hover:text-slate-900 hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.55)] font-medium transition-all duration-200"
+                  className="text-slate-700 hover:text-slate-950 hover:underline decoration-slate-950 font-medium transition-all duration-200"
                   onClick={() => setIsOpen(false)}
                 >
                   Contact
