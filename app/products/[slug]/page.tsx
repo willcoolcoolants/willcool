@@ -8,7 +8,7 @@ import Link from "next/link"
 
 const productData: Record<string, any> = {
   "flx1": {
-    name: "WILLCool Synthetic Solutions: FLX1",
+    name: "WillCool Synthetic Solutions: FLX1",
     description:
       "FLX1 is an extreme heavy-duty synthetic cutting and grinding fluid designed for both ferrous and nonferrous applications. Exceptional lubrication coupled with low PH mix makes FLX1 an ideal choice for tough applications on all grades of aluminum.",
     image: "/coolant1.jpg",
@@ -48,7 +48,7 @@ const productData: Record<string, any> = {
     ],
   },
   "apx-av": {
-    name: "WILLCool Semi Synthetic Solutions: APX AV",
+    name: "WillCool Semi Synthetic Solutions: APX AV",
     description:
       "APX AV is a heavy duty micro emulsion with a high lubricity profile that optimizes tool life for both ferrous and non-ferrous materials. Utilizes proprietary C80 Shield™ Technology for bacterial bio-resistance and mold prevention.",
     image: "/coolant2.jpg",
@@ -85,6 +85,12 @@ const productData: Record<string, any> = {
       "Not for use on Magnesium",
     ],
   },
+}
+
+export async function generateStaticParams() {
+  return Object.keys(productData).map((slug) => ({
+    slug,
+  }));
 }
 
 export default async function ProductPage({ params }: { params: { slug: string } }) {

@@ -5,13 +5,13 @@ import { Card, CardContent } from "@/components/ui/card"
 const products = [
   {
     id: "flx1",
-    name: "WILLCool Synthetic Solutions: FLX1",
+    name: "WillCool Synthetic Solutions: FLX1",
     image: "/coolant1.jpg",
     description: "Extreme heavy-duty synthetic cutting & grinding fluid for ferrous and nonferrous applications.",
   },
   {
     id: "apx-av",
-    name: "WILLCool Semi Synthetic Solutions: APX AV",
+    name: "WillCool Semi Synthetic Solutions: APX AV",
     image: "/coolant2.jpg",
     description: "Heavy duty micro emulsion with high lubricity profile and bio-resistance.",
   },
