@@ -43,7 +43,7 @@ export default function Navigation() {
       <div className="bg-slate-800 text-white py-1 px-4">
         <div className="container mx-auto flex justify-center items-center">
           <Phone className="w-4 h-4 mr-2" />
-          <span className="text-sm font-medium">CALL TODAY! 1-800-WILLCOOL</span>
+          <span className="text-sm font-medium">CALL TODAY! 1-513-739-8939</span>
         </div>
       </div>
 
@@ -66,7 +66,7 @@ export default function Navigation() {
               </div>
               <div>
                 <div className="font-bold text-2xl text-slate-800">WillCool</div>
-                <div className="text-xs text-slate-500 font-medium tracking-wider">SYNTHETIC COOLANTS</div>
+                <div className="text-xs text-slate-500 font-medium tracking-wider">Premium Metal Cutting Fluids and Lubricants</div>
               </div>
             </Link>
 

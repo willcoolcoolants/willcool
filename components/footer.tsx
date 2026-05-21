@@ -21,7 +21,7 @@ export default function Footer() {
               </div>
               <div>
                 <div className="font-bold text-lg">WillCool</div>
-                <div className="text-xs text-slate-400">SYNTHETIC COOLANTS</div>
+                <div className="text-xs text-slate-400">Premium Metal Cutting Fluids and Lubricants</div>
               </div>
             </div>
             <p className="text-slate-400 mb-4">
@@ -80,23 +80,23 @@ export default function Footer() {
             <div className="space-y-3">
               <div className="flex items-center space-x-2">
                 <Phone className="w-4 h-4" />
-                <span className="text-slate-400">1-800-WILLCOOL</span>
+                <span className="text-slate-400">1-513-739-8939</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="w-4 h-4" />
-                <span className="text-slate-400">info@willcool.com</span>
+                <span className="text-slate-400">info@will-cool.com</span>
               </div>
-              <div className="flex items-center space-x-2">
+              {/*<div className="flex items-center space-x-2">
                 <MapPin className="w-4 h-4" />
                 <span className="text-slate-400">123 Industrial Way, Coolant City, MI 48201</span>
-              </div>
+              </div>*/}
             </div>
           </div>
         </div>
 
         <div className="border-t border-slate-800 mt-8 pt-8 text-center">
           <p className="text-slate-400">
-            © 2024 WillCool. All rights reserved. | Premium Synthetic Coolants for Precision Machining
+            © 2025 WillCool. All rights reserved. | Premium Synthetic Coolants for Precision Machining
           </p>
         </div>
       </div>

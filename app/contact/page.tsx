@@ -140,8 +140,7 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-900 mb-1">Phone</h3>
-                        <p className="text-gray-600">1-800-555-0123</p>
-                        <p className="text-gray-600">1-800-555-0124 (Fax)</p>
+                        <p className="text-gray-600">1-513-739-8939</p>
                       </div>
                     </div>
 
@@ -151,12 +150,13 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-900 mb-1">Email</h3>
-                        <p className="text-gray-600">willcoolcollants@gmail.com</p>
+                        <p className="text-gray-600">info@will-cool.com</p>
+                        <p className="text-gray-600">orders@will-cool.com</p>
                         {/*<p className="text-gray-600">sales@will-cool.com</p>*/}
                       </div>
                     </div>
 
-                    <div className="flex items-start space-x-4">
+                    {/*<div className="flex items-start space-x-4">
                       <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
                         <MapPin className="w-6 h-6 text-green-600" />
                       </div>
@@ -166,7 +166,7 @@ export default function ContactPage() {
                         <p className="text-gray-600">Coolant City, MI 48201</p>
                         <p className="text-gray-600">United States</p>
                       </div>
-                    </div>
+                    </div>*/}
 
                     <div className="flex items-start space-x-4">
                       <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
