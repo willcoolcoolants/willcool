@@ -49,19 +49,19 @@ export default function Navigation() {
             <div className="hidden md:flex items-center space-x-8">
               <Link
                 href="/"
-                className="text-slate-700 hover:text-white hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.55)] font-medium transition-all duration-200"
+                className="text-slate-700 hover:text-black hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.55)] font-medium transition-all duration-200"
               >
                 Home
               </Link>
               <Link
                 href="/products"
-                className="text-slate-700 hover:text-white hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.55)] font-medium transition-all duration-200"
+                className="text-slate-700 hover:text-black hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.55)] font-medium transition-all duration-200"
               >
                 Products
               </Link>
               <Link
                 href="/contact"
-                className="text-slate-700 hover:text-white hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.55)] font-medium transition-all duration-200"
+                className="text-slate-700 hover:text-black hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.55)] font-medium transition-all duration-200"
               >
                 Contact
               </Link>
