@@ -6,12 +6,14 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Download, ArrowLeft } from "lucide-react"
 import Link from "next/link"
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
+
 const productData: Record<string, any> = {
   "flx1": {
     name: "WillCool Synthetic Solutions: FLX1",
     description:
       "FLX1 is an extreme heavy-duty synthetic cutting and grinding fluid designed for both ferrous and nonferrous applications. Exceptional lubrication coupled with low PH mix makes FLX1 an ideal choice for tough applications on all grades of aluminum.",
-    image: "/coolant1.jpg",
+    image: `${basePath}/coolant1.jpg`,
     features: [
       "Operator safe; runs extremely clean and clear",
       "Excellent cooling and lubrication at the cutting interface",
@@ -51,7 +53,7 @@ const productData: Record<string, any> = {
     name: "WillCool Semi Synthetic Solutions: APX AV",
     description:
       "APX AV is a heavy duty micro emulsion with a high lubricity profile that optimizes tool life for both ferrous and non-ferrous materials. Utilizes proprietary C80 Shield™ Technology for bacterial bio-resistance and mold prevention.",
-    image: "/coolant2.jpg",
+    image: `${basePath}/coolant2.jpg`,
     features: [
       "High lubricity profile = excellent tool life",
       "C80 Shield™ Technology provides bio-resistance and mold prevention",

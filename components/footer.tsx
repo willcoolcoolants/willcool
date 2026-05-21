@@ -1,6 +1,8 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Phone, Mail, MapPin } from "lucide-react"
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
+
 
 export default function Footer() {
   return (
@@ -12,7 +14,7 @@ export default function Footer() {
             <div className="flex items-center space-x-3 mb-4">
               <div className="w-12 h-12 rounded-xl flex items-center justify-center shadow-lg bg-white">
                 <Image
-                  src="/logo.png"
+                  src={`${basePath}/logo.png`}
                   alt="WillCool Logo"
                   width={48}
                   height={48}

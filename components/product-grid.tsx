@@ -1,18 +1,20 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
+
 
 const products = [
   {
     id: "flx1",
     name: "WillCool Synthetic Solutions: FLX1",
-    image: "/coolant1.jpg",
+    image: `${basePath}/coolant1.jpg`,
     description: "Extreme heavy-duty synthetic cutting & grinding fluid for ferrous and nonferrous applications.",
   },
   {
     id: "apx-av",
     name: "WillCool Semi Synthetic Solutions: APX AV",
-    image: "/coolant2.jpg",
+    image: `${basePath}/coolant2.jpg`,
     description: "Heavy duty micro emulsion with high lubricity profile and bio-resistance.",
   },
 ]
