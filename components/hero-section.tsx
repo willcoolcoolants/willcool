@@ -4,7 +4,7 @@ import Link from "next/link"
 
 export default function HeroSection() {
   return (
-    <section className="relative -mt-24 md:-mt-28 lg:-mt-32 min-h-[700px] bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 overflow-hidden">
+    <section className="relative -mt-24 md:-mt-28 lg:-mt-32 min-h-[700px] bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 overflow-hidden adj-top-margin">
       {/* Animated Fluid Background */}
       <div className="fluid-background"></div>
       <div className="hero-overlay"></div>
