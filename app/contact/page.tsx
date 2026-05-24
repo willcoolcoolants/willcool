@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { sendEmail } from '../actions';
+{/*import { sendEmail } from '../actions';*/}
 
 import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
@@ -20,14 +20,14 @@ export default function ContactPage() {
     message: "",
   })
 
-  {/*const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     // Handle form submission
     console.log("Form submitted:", formData)
     alert("Thank you for your message! We will get back to you soon.")
     setFormData({ name: "", email: "", company: "", message: "" })
-  }*/}
-  async function handleSubmit(formData: FormData) {
+  }
+  {/*async function handleSubmit(formData: FormData) {
     const result = await sendEmail(formData);
     if (result.success) {
       alert("Thank you for your message! We will get back to you soon.")
@@ -35,7 +35,7 @@ export default function ContactPage() {
       alert("Message failed to send: " + result.error)
     }
     setFormData({ name: "", email: "", company: "", message: "" })
-  }
+  }*/}
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -67,7 +67,7 @@ export default function ContactPage() {
               <Card>
                 <CardContent className="p-8">
                   <h2 className="text-3xl font-bold text-gray-900 mb-6">Send us a Message</h2>
-                  <form action={handleSubmit} className="space-y-6">
+                  <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
                         <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
