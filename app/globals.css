@@ -212,6 +212,8 @@
   min-width: .5rem;
 }
 
-.no-top-padding{
+@media screen and (min-width: 768px) {
+  .no-top-padding{
   padding-top: 0 !important;
+}
 }
