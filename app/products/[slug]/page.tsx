@@ -172,8 +172,8 @@ export default async function ProductPage({ params }: { params: { slug: string }
                     <ul className="space-y-2">
                       {product.features.map((feature: string, index: number) => (
                         <li key={index} className="flex items-center text-gray-700">
-                          <div className="w-2 h-2 bg-blue-600 rounded-full mr-3"></div>
-                          {feature}
+                          <div className="w-2 h-2 bg-blue-600 rounded-full mr-3 ball"></div>
+                          <p>{feature}</p>
                         </li>
                       ))}
                     </ul>
@@ -187,8 +187,8 @@ export default async function ProductPage({ params }: { params: { slug: string }
                     <ul className="space-y-2">
                       {product.applications.map((application: string, index: number) => (
                         <li key={index} className="flex items-center text-gray-700">
-                          <div className="w-2 h-2 bg-red-600 rounded-full mr-3"></div>
-                          {application}
+                          <div className="w-2 h-2 bg-red-600 rounded-full mr-3 ball"></div>
+                          <p>{application}</p>
                         </li>
                       ))}
                     </ul>
@@ -203,8 +203,8 @@ export default async function ProductPage({ params }: { params: { slug: string }
                       <ul className="space-y-2">
                         {product.advantages.map((adv: string, index: number) => (
                           <li key={index} className="flex items-center text-gray-700">
-                            <div className="w-2 h-2 bg-green-600 rounded-full mr-3"></div>
-                            {adv}
+                            <div className="w-2 h-2 bg-green-600 rounded-full mr-3 ball"></div>
+                            <p>{adv}</p>
                           </li>
                         ))}
                       </ul>
@@ -213,13 +213,13 @@ export default async function ProductPage({ params }: { params: { slug: string }
                 )}
 
                 {/* Download PDF */}
-                <Button
+                {/*<Button
                   size="lg"
                   className="w-full bg-red-600 hover:bg-red-700 text-white transition-all duration-300 transform hover:scale-105"
                 >
                   <Download className="w-5 h-5 mr-2" />
                   Download Product PDF
-                </Button>
+                </Button>*/}
               </div>
             </div>
           </div>

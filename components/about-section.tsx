@@ -20,12 +20,12 @@ export default function AboutSection() {
             dissipation, and extended tool life in the most demanding machining environments.
           </p>
 
-          <Button
+          {/*<Button
             size="lg"
             className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105"
           >
             Download Company Brochure
-          </Button>
+          </Button>*/}
         </div>
       </div>
     </section>

@@ -207,3 +207,7 @@
     opacity: 0.5;
   }
 }
+
+.ball{
+  min-width: .5rem;
+}
