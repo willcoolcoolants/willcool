@@ -211,3 +211,7 @@
 .ball{
   min-width: .5rem;
 }
+
+.no-top-padding{
+  padding-top: 0 !important;
+}

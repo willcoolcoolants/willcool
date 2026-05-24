@@ -24,7 +24,7 @@ export default function Navigation() {
 
       {/* Main Navigation */}
       <nav className="sticky top-0 z-50 transition-all duration-300 bg-transparent">
-        <div className="container mx-auto px-4 py-3 md:py-4">
+        <div className="container mx-auto px-4 py-3 md:py-4 no-top-padding">
           <div className="glass-nav relative rounded-2xl md:rounded-3xl px-4 md:px-6">
             <div className="flex justify-between items-center py-2 md:py-3">
             {/* Logo */}
