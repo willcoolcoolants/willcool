@@ -1,12 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  basePath: '/willcool',
+  basePath: '',
   // Optional: Add assetPrefix if assets still don't load
-  assetPrefix: '/willcool/',
-  env: {
+  //assetPrefix: '/willcool/',
+  /*env: {
     NEXT_PUBLIC_BASE_PATH: '/willcool',
-  },
+  },*/
   eslint: {
     ignoreDuringBuilds: true,
   },
