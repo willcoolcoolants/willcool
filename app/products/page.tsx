@@ -4,21 +4,13 @@ import ProductGrid from "@/components/product-grid"
 
 export default function ProductsPage() {
   return (
-    <div className="min-h-screen">
+    <>
       <Navigation />
-
-      {/* Page Header */}
-      <section className="bg-gradient-to-r from-blue-900 to-blue-700 py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 fade-in">Our Products</h1>
-          <p className="text-xl text-blue-200 max-w-3xl mx-auto fade-in">
-            Explore our comprehensive range of industrial solutions designed for excellence
-          </p>
-        </div>
-      </section>
-
-      <ProductGrid />
+      <main id="main-content">
+        <section className="page-heading"><div className="site-container"><p className="eyebrow mb-4">WillCool metalworking fluids</p><h1 className="text-4xl font-semibold tracking-tight md:text-6xl">Built for your application.</h1><p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600">Explore WillCool APX and WillCool FLX1. Compare applications and features to find your fluid.</p></div></section>
+        <ProductGrid showHeading={false} />
+      </main>
       <Footer />
-    </div>
+    </>
   )
 }

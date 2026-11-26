@@ -1,32 +1,12 @@
-import { Button } from "@/components/ui/button"
-import { Award, Users, Zap } from "lucide-react"
+import Link from "next/link"
+import { ArrowRight } from "lucide-react"
 
 export default function AboutSection() {
   return (
-    <section className="py-20 bg-white">
-      <div className="container mx-auto px-4 max-w-5xl">
-        <div className="flex flex-col items-center text-center">
-          <h2 className="text-5xl font-bold text-slate-800 mb-6">
-            We Know <span className="text-blue-600">Coolant Technology</span>
-          </h2>
-          <p className="text-xl text-slate-600 mb-6 leading-relaxed max-w-3xl">
-            Founded with a commitment to innovation, WillCool continues to manufacture the most advanced synthetic
-            coolant materials on the market today. Our team of chemical engineers and machining specialists have
-            decades of combined experience developing cutting-edge coolant solutions.
-          </p>
-          <p className="text-xl text-slate-600 mb-8 leading-relaxed max-w-3xl">
-            We manufacture a complete line of synthetic coolants that are recognized as the most reliable and
-            performance-driven solutions in the industry. Our coolants provide superior lubrication, excellent heat
-            dissipation, and extended tool life in the most demanding machining environments.
-          </p>
-
-          {/*<Button
-            size="lg"
-            className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105"
-          >
-            Download Company Brochure
-          </Button>*/}
-        </div>
+    <section className="bg-blue-950 py-16 text-white md:py-20">
+      <div className="site-container grid gap-8 md:grid-cols-2 md:gap-20">
+        <div><p className="eyebrow mb-4 text-blue-200 before:mb-5 before:block before:h-1 before:w-12 before:bg-red-500">The WillCool approach</p><h2 className="text-3xl font-semibold leading-tight tracking-tight md:text-4xl">Performance in the machine.<br />People you can count on.</h2></div>
+        <div><p className="text-lg leading-relaxed text-blue-100">Your material, your process, your application. We help you find the right cutting fluid for dependable lubrication, cooling, and surface finish.</p><Link href="/contact" className="mt-6 inline-flex min-h-11 items-center gap-3 font-medium text-white underline underline-offset-4 hover:text-blue-200">Let’s discuss your application <ArrowRight size={18} /></Link></div>
       </div>
     </section>
   )

@@ -1,17 +1,18 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Poppins } from "next/font/google"
+import { Inter } from "next/font/google"
 import "./globals.css"
+import LandingIntro from "@/components/landing-intro"
 
-const poppins = Poppins({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-inter",
 })
 
 export const metadata: Metadata = {
-  title: "WillCool - Premium Synthetic Coolants",
-  description: "Leading manufacturer of synthetic coolant materials for precision machining applications",
-    generator: 'v0.dev'
+  title: "WillCool | Metal Cutting Fluids & Lubricants",
+  description: "Quality. Integrity. Service. Explore WillCool FLX1 synthetic and WillCool APX semi-synthetic fluids for machining and grinding."
 }
 
 export default function RootLayout({
@@ -20,11 +21,14 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={inter.variable}>
       <head>
-                <link rel="icon" href={`${process.env.NEXT_PUBLIC_BASE_PATH}/logo.png`} type="image/png" />
+                <link rel="icon" href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/willcool-logo.svg`} type="image/svg+xml" />
       </head>
-      <body className={poppins.className}>{children}</body>
+      <body className="font-sans antialiased">
+        <LandingIntro />
+        {children}
+      </body>
     </html>
   )
 }
