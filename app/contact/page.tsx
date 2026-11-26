@@ -1,227 +1,71 @@
 "use client"
 
 import type React from "react"
-{/*import { sendEmail } from '../actions';*/}
-
+import { useRef, useState } from "react"
+import { sendInquiry } from "@/lib/send-inquiry"
 import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Phone, Mail, MapPin, Clock } from "lucide-react"
-import { useState } from "react"
+import { ArrowUpRight, ArrowRight } from "lucide-react"
+
+const formEndpoint = process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT ?? ""
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    company: "",
-    message: "",
-  })
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle")
+  const [errorMessage, setErrorMessage] = useState("")
+  const sending = useRef(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Handle form submission
-    console.log("Form submitted:", formData)
-    alert("Thank you for your message! We will get back to you soon.")
-    setFormData({ name: "", email: "", company: "", message: "" })
-  }
-  {/*async function handleSubmit(formData: FormData) {
-    const result = await sendEmail(formData);
-    if (result.success) {
-      alert("Thank you for your message! We will get back to you soon.")
-    } else {
-      alert("Message failed to send: " + result.error)
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    if (sending.current) return
+    const form = event.currentTarget
+    const data = new FormData(form)
+    data.set("_subject", `WillCool inquiry${data.get("company") ? ` — ${data.get("company")}` : ""}`)
+    sending.current = true
+    setStatus("sending")
+    setErrorMessage("")
+
+    try {
+      await sendInquiry(formEndpoint, data)
+      form.reset()
+      setStatus("success")
+    } catch (error) {
+      setErrorMessage(error instanceof TypeError
+        ? "Could not connect. Please check your connection and try again, or email info@will-cool.com."
+        : error instanceof Error ? error.message : "Your inquiry could not be sent. Please try again.")
+      setStatus("error")
+    } finally {
+      sending.current = false
     }
-    setFormData({ name: "", email: "", company: "", message: "" })
-  }*/}
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    })
   }
 
   return (
-    <div className="min-h-screen">
+    <>
       <Navigation />
-
-      {/* Page Header */}
-      <section className="bg-gradient-to-r from-blue-900 to-blue-700 py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 fade-in">Contact Us</h1>
-          <p className="text-xl text-blue-200 max-w-3xl mx-auto fade-in">
-            Get in touch with our team of experts for all your industrial solution needs
-          </p>
-        </div>
-      </section>
-
-      {/* Contact Content */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
-            <div className="slide-in-left">
-              <Card>
-                <CardContent className="p-8">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-6">Send us a Message</h2>
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                          Full Name *
-                        </label>
-                        <Input
-                          id="name"
-                          name="name"
-                          type="text"
-                          required
-                          value={formData.name}
-                          onChange={handleChange}
-                          className="transition-all duration-200 focus:ring-2 focus:ring-blue-500"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                          Email Address *
-                        </label>
-                        <Input
-                          id="email"
-                          name="email"
-                          type="email"
-                          required
-                          value={formData.email}
-                          onChange={handleChange}
-                          className="transition-all duration-200 focus:ring-2 focus:ring-blue-500"
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">
-                        Company Name
-                      </label>
-                      <Input
-                        id="company"
-                        name="company"
-                        type="text"
-                        value={formData.company}
-                        onChange={handleChange}
-                        className="transition-all duration-200 focus:ring-2 focus:ring-blue-500"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                        Message *
-                      </label>
-                      <Textarea
-                        id="message"
-                        name="message"
-                        rows={6}
-                        required
-                        value={formData.message}
-                        onChange={handleChange}
-                        className="transition-all duration-200 focus:ring-2 focus:ring-blue-500"
-                        placeholder="Tell us about your industrial solution needs..."
-                      />
-                    </div>
-                    <Button
-                      type="submit"
-                      size="lg"
-                      className="w-full bg-red-600 hover:bg-red-700 text-white text-lg font-semibold tracking-wide transition-all duration-300 transform hover:scale-105"
-                    >
-                      Send Message
-                    </Button>
-                  </form>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Contact Information */}
-            <div className="slide-in-right space-y-8">
-              <Card>
-                <CardContent className="p-8">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-6">Get in Touch</h2>
-                  <div className="space-y-6">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <Phone className="w-6 h-6 text-blue-600" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-gray-900 mb-1">Phone</h3>
-                        <p className="text-gray-600">1-513-739-8939</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <Mail className="w-6 h-6 text-red-600" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-gray-900 mb-1">Email</h3>
-                        <p className="text-gray-600">info@will-cool.com</p>
-                        <p className="text-gray-600">orders@will-cool.com</p>
-                        {/*<p className="text-gray-600">sales@will-cool.com</p>*/}
-                      </div>
-                    </div>
-
-                    {/*<div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <MapPin className="w-6 h-6 text-green-600" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-gray-900 mb-1">Address</h3>
-                        <p className="text-gray-600">123 Industrial Way</p>
-                        <p className="text-gray-600">Coolant City, MI 48201</p>
-                        <p className="text-gray-600">United States</p>
-                      </div>
-                    </div>*/}
-
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <Clock className="w-6 h-6 text-purple-600" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-gray-900 mb-1">Business Hours</h3>
-                        <p className="text-gray-600">Monday - Friday: 8:00 AM - 6:00 PM</p>
-                        <p className="text-gray-600">Saturday: 9:00 AM - 4:00 PM</p>
-                        <p className="text-gray-600">Sunday: Closed</p>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardContent className="p-8 bg-gradient-to-r from-blue-50 to-red-50">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Why Choose Us?</h3>
-                  <ul className="space-y-3">
-                    <li className="flex items-center text-gray-700">
-                      <div className="w-2 h-2 bg-blue-600 rounded-full mr-3"></div>
-                      25+ years of industry experience
-                    </li>
-                    <li className="flex items-center text-gray-700">
-                      <div className="w-2 h-2 bg-red-600 rounded-full mr-3"></div>
-                      Premium quality products
-                    </li>
-                    <li className="flex items-center text-gray-700">
-                      <div className="w-2 h-2 bg-blue-600 rounded-full mr-3"></div>
-                      Expert technical support
-                    </li>
-                    <li className="flex items-center text-gray-700">
-                      <div className="w-2 h-2 bg-red-600 rounded-full mr-3"></div>
-                      Fast nationwide shipping
-                    </li>
-                  </ul>
-                </CardContent>
-              </Card>
-            </div>
+      <main id="main-content">
+        <section className="page-heading"><div className="site-container"><p className="eyebrow mb-4">Contact WillCool</p><h1 className="text-4xl font-semibold tracking-tight md:text-6xl">Let’s get to work.</h1><p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600">Need help choosing a fluid or placing an order? Tell us about your materials and machining process.</p></div></section>
+        <section className="site-container grid gap-12 py-16 lg:grid-cols-[1fr_1.3fr] lg:gap-20">
+          <div className="flex flex-col"><h2 className="text-2xl font-semibold tracking-tight">A direct line to our team.</h2><div className="mt-8 divide-y divide-slate-200 border-y border-slate-200 lg:grid lg:flex-1 lg:grid-rows-3">
+            {[{ label: "Call us", text: "513-739-8939", href: "tel:+15137398939" }, { label: "Product questions", text: "info@will-cool.com", href: "mailto:info@will-cool.com" }, { label: "Orders", text: "orders@will-cool.com", href: "mailto:orders@will-cool.com" }].map(item => <a key={item.label} href={item.href} className="group flex items-center justify-between gap-4 py-5"><div><span className="block text-xs font-medium uppercase tracking-wider text-slate-500">{item.label}</span><span className="mt-2 block text-lg font-medium group-hover:text-blue-700 lg:text-xl">{item.text}</span></div><ArrowUpRight size={20} className="shrink-0 text-blue-700" /></a>)}
+          </div></div>
+          <div className="rounded-md border border-slate-200 p-6 md:p-8"><h2 className="mb-7 text-2xl font-semibold tracking-tight">Start an inquiry</h2>
+            <form onSubmit={handleSubmit} className="space-y-5" aria-busy={status === "sending"}>
+              <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
+              <fieldset disabled={status === "sending"} className="space-y-5">
+              <div className="grid gap-5 sm:grid-cols-2"><div><label htmlFor="name" className="mb-2 block text-sm font-medium">Full name <span className="text-slate-500">(required)</span></label><Input id="name" name="name" autoComplete="name" required className="min-h-12" /></div><div><label htmlFor="email" className="mb-2 block text-sm font-medium">Email <span className="text-slate-500">(required)</span></label><Input id="email" name="email" type="email" autoComplete="email" required className="min-h-12" /></div></div>
+              <div><label htmlFor="company" className="mb-2 block text-sm font-medium">Company</label><Input id="company" name="company" autoComplete="organization" className="min-h-12" /></div>
+              <div><label htmlFor="message" className="mb-2 block text-sm font-medium">How can we help? <span className="text-slate-500">(required)</span></label><Textarea id="message" name="message" rows={5} required placeholder="Materials, application, or order details…" /></div>
+              <button type="submit" disabled={!formEndpoint || status === "sending"} className="button-primary disabled:cursor-not-allowed disabled:opacity-60">{status === "sending" ? "Sending…" : "Send inquiry"} <ArrowRight size={18} /></button>
+              </fieldset>
+              {!formEndpoint && <p className="text-sm text-slate-600">Online inquiries are currently unavailable. Please <a href="mailto:info@will-cool.com" className="font-medium text-blue-700 underline">email our team</a>.</p>}
+              {status === "success" && <p role="status" className="rounded border border-green-200 bg-green-50 p-4 text-sm text-green-800">Thank you. Your inquiry has been submitted to our team.</p>}
+              {status === "error" && <p role="alert" className="rounded border border-red-200 bg-red-50 p-4 text-sm text-red-800">{errorMessage}</p>}
+            </form>
           </div>
-        </div>
-      </section>
-
+        </section>
+      </main>
       <Footer />
-    </div>
+    </>
   )
 }

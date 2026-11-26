@@ -1,63 +1,29 @@
-import { Button } from "@/components/ui/button"
-import { ArrowRight, Droplets } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import Link from "next/link"
+import { products } from "@/lib/products"
 
 export default function HeroSection() {
   return (
-    <section className="relative -mt-24 md:-mt-28 lg:-mt-32 min-h-[700px] bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 overflow-hidden adj-top-margin">
-      {/* Animated Fluid Background */}
-      <div className="fluid-background"></div>
-      <div className="hero-overlay"></div>
-
-      <div className="hero-content container mx-auto px-4 pt-40 pb-24 md:pt-52 md:pb-28">
-        <div className="max-w-4xl mx-auto text-center text-white">
-          <Link
-            href="tel:180094552665"
-            className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-5 py-2.5 mb-8 slide-in-left transition-transform duration-300 hover:scale-[1.02]"
-          >
-            <Droplets className="w-4 h-4 mr-2 text-blue-300" />
-            <span className="text-sm font-semibold tracking-wide uppercase">Call 1-513-739-8939</span>
-          </Link>
-
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 slide-in-left">
-            Advanced Coolant
-            <span className="block bg-gradient-to-r from-blue-400 to-red-400 bg-clip-text text-transparent">
-              Solutions
-            </span>
-          </h1>
-
-          <p className="text-xl md:text-2xl mb-12 opacity-90 max-w-3xl mx-auto leading-relaxed slide-in-right">
-            Engineered synthetic coolants for precision machining. Superior performance, extended tool life, and
-            exceptional surface finishes for the most demanding applications.
-          </p>
-
-          <div className="flex justify-center fade-in">
-            <Link href="/products">
-              <Button
-                size="lg"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold rounded-full transition-all duration-300 transform hover:scale-105 shadow-xl"
-              >
-                Explore Products
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
-            </Link>
-          </div>
-
-          {/* Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20 fade-in">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-blue-300 mb-2">25+</div>
-              <div className="text-slate-300">Years Experience</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-red-300 mb-2">500+</div>
-              <div className="text-slate-300">Satisfied Customers</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-white mb-2">99.9%</div>
-              <div className="text-slate-300">Quality Assurance</div>
-            </div>
-          </div>
+    <section className="relative overflow-hidden border-b border-slate-700 bg-slate-900 text-white">
+      <div className="fluid-background" aria-hidden="true" />
+      <div className="hero-overlay" aria-hidden="true" />
+      <div className="hero-content site-container grid items-center gap-12 py-16 md:grid-cols-2 md:gap-0 md:py-24">
+        <div className="md:pr-10">
+          <p className="eyebrow mb-6 text-blue-200 before:mb-5 before:block before:h-1 before:w-12 before:bg-red-400">Precision starts with the right fluid</p>
+          <h1 className="text-5xl font-semibold leading-[1.08] tracking-[-0.045em] sm:text-6xl lg:text-7xl">Quality.<br />Integrity.<br /><span className="text-blue-300">Service.</span></h1>
+          <p className="mt-7 max-w-lg text-lg leading-relaxed text-slate-200">Metal cutting fluids and lubricants for demanding machining and grinding applications. The right solution, your way.</p>
+          <div className="mt-8 flex flex-wrap items-center gap-5"><Link href="/products" className="button-primary">Explore our fluids <ArrowRight size={18} /></Link><Link href="/contact" className="text-sm font-semibold underline underline-offset-4 hover:text-blue-200">Talk to our team</Link></div>
+        </div>
+        <div className="space-y-4 border-t border-white/20 pt-8 md:border-l md:border-t-0 md:pl-10 md:pt-0">
+          <h2 className="eyebrow mb-5 text-blue-200">Two solutions. One standard.</h2>
+          {Object.entries(products).map(([slug, product]) => (
+            <article key={slug} className="rounded-md border border-slate-200 bg-white/95 p-6 text-slate-950">
+              <p className={`text-xs font-medium ${slug === "apx" ? "text-red-700" : "text-blue-700"}`}>{product.type}</p>
+              <h3 className="mt-2 text-2xl font-semibold tracking-tight">{product.name}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-slate-700">{slug === "apx" ? product.description : "Extreme synthetic cutting and grinding fluid for ferrous and nonferrous materials, including all grades of aluminum and titanium."}</p>
+              <Link href={`/products/${slug}`} className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-blue-700 hover:underline">View product details <ArrowRight size={16} /></Link>
+            </article>
+          ))}
         </div>
       </div>
     </section>

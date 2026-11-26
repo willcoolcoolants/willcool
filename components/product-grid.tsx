@@ -1,58 +1,18 @@
 import Image from "next/image"
 import Link from "next/link"
-import { Card, CardContent } from "@/components/ui/card"
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
+import { ArrowUpRight } from "lucide-react"
+import { products } from "@/lib/products"
 
-
-const products = [
-  {
-    id: "flx1",
-    name: "WillCool Synthetic Solutions: FLX1",
-    image: `${basePath}/coolant1.jpg`,
-    description: "Extreme heavy-duty synthetic cutting & grinding fluid for ferrous and nonferrous applications.",
-  },
-  {
-    id: "apx-av",
-    name: "WillCool Semi Synthetic Solutions: APX AV",
-    image: `${basePath}/coolant2.jpg`,
-    description: "Heavy duty micro emulsion with high lubricity profile and bio-resistance.",
-  },
-]
-
-export default function ProductGrid() {
+export default function ProductGrid({ showHeading = true }: { showHeading?: boolean }) {
   return (
-    <section className="py-20 bg-slate-50">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-slate-800 mb-4">Our Coolant Solutions</h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-            Explore our flagship synthetic formulas, crafted for peak machining performance and dependable protection.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 justify-items-center">
-          {products.map((product, index) => (
-            <Link key={product.id} href={`/products/${product.id}`} className="w-full md:w-[420px] lg:w-[460px]">
-              <Card className="group cursor-pointer transition-all duration-300 hover:shadow-2xl hover:-translate-y-3 fade-in border border-white/50 bg-white/70 backdrop-blur">
-                <CardContent className="p-0">
-                  <div className="relative overflow-hidden rounded-t-3xl">
-                    <Image
-                      src={product.image}
-                      alt={product.name}
-                      width={800}
-                      height={600}
-                      className="w-full h-[320px] object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </div>
-                  <div className="p-8">
-                    <h3 className="text-2xl font-semibold text-slate-800 mb-3 group-hover:text-slate-900 transition-colors duration-200">
-                      {product.name}
-                    </h3>
-                    <p className="text-slate-600 text-base leading-relaxed">{product.description}</p>
-                  </div>
-                </CardContent>
-              </Card>
+    <section className="bg-stone-50 py-16 md:py-20" aria-label="WillCool products">
+      <div className="site-container">
+        {showHeading && <div className="mb-10 max-w-2xl"><p className="eyebrow mb-3">Our fluids</p><h2 className="text-3xl font-semibold tracking-tight md:text-4xl">Two solutions. One standard.</h2><p className="mt-4 leading-relaxed text-slate-600">Synthetic and semi-synthetic fluids to help you choose the right fit.</p></div>}
+        <div className="grid gap-8 md:grid-cols-2">
+          {Object.entries(products).map(([slug, product]) => (
+            <Link key={slug} href={`/products/${slug}`} className="group overflow-hidden rounded-md border border-slate-200 bg-white transition-colors hover:border-slate-400">
+              <div className="relative h-56 overflow-hidden bg-slate-100 lg:h-64"><Image src={product.image} alt={`${product.name} machining application`} fill sizes="(max-width: 767px) 100vw, 50vw" className="object-cover" /></div>
+              <div className="p-6 md:p-8"><p className={`eyebrow ${slug === "flx1" ? "text-blue-700" : "text-red-700"}`}>{slug === "flx1" ? "02 / Synthetic" : "01 / Semi-synthetic"}</p><div className="mt-3 flex items-center justify-between gap-4"><h3 className="text-2xl font-semibold tracking-tight md:text-3xl">{product.name}</h3><ArrowUpRight className="text-blue-700" size={24} /></div><p className="mt-4 leading-relaxed text-slate-600">{slug === "flx1" ? "Extreme synthetic cutting and grinding fluid for ferrous and nonferrous applications." : product.description}</p><span className="mt-6 inline-flex text-sm font-semibold text-blue-700 group-hover:underline">View product details</span></div>
             </Link>
           ))}
         </div>
